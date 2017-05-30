@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:design="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="coffee.prototype.android.todolist.HomeScreen"
+
+    android:background="@color/midnightBlue">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/home_toolbar"
+        android:backgroundTint="@color/midnightBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="Remind Me!"
+        app:titleTextColor="@color/white">
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/task_recycleview"
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/no_reminders_set"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:foregroundGravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/no_reminders_set"
+        android:contentDescription="@string/no_reminders_set_image_content_desc"/>
+
+    <TextView
+        android:id="@+id/no_reminders_set_text"
+        android:layout_marginTop="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        style="@style/receipt_child_values"
+        android:text="@string/home_screen_no_reminders_set"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"/>
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_reminder_floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/bottom_navigation"
+        android:src="@drawable/plus_black"
+        android:onClick="navigateToAddTask"
+        android:tint="@color/white"
+        />
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/midnightBlue"
+        android:background="@color/midnightBlue"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/home_menu"
+
+
+
+        >
+
+    </android.support.design.widget.BottomNavigationView>
+
+</RelativeLayout>

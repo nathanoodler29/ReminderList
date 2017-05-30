@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Remind me!</string>
+    <string name="low_priority">Low priority</string>
+    <string name="med_priority">Med priority</string>
+    <string name="high_priority">High priority</string>
+
+    <string name="home_screen_no_reminders_set">No reminders have been set</string>
+
+    <string name="add_task_save_text">Save</string>
+    <string name="add_task_cancel_text">Cancel</string>
+    <string name="add_time_text">Add time</string>
+    <string name="add_time_name_of_task">Name of Task</string>
+    <string name="no_reminders_set_image_content_desc">Cartoon of a head, with a question mark inside</string>
+
+
+</resources>
