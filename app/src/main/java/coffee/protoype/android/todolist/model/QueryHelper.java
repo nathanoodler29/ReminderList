@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,16 +25,11 @@ public class QueryHelper {
 
         contentValues.put(TaskContract.TaskEntry.COLUMN_TASK_COLOR, taskColor);
 
-      db.insert(TaskContract.TaskEntry.TABLE_NAME, null, contentValues);
-
-
-//        createToastWithText("row id of goal id" + newRowId);
-        //Log cat used to show that a database insertion is occuring.
+        db.insert(TaskContract.TaskEntry.TABLE_NAME, null, contentValues);
 
         db.close();
 
     }
-
 
 
     public ArrayList<Task> populateTaskAdapter(Context context) {
@@ -58,9 +51,8 @@ public class QueryHelper {
                 String taskColor = cursor.getString(2);
 
 
-                Task task = new Task(1,taskName, "");
+                Task task = new Task(taskName, Integer.parseInt(taskColor));
 
-                task.setTaskNum(1);
                 task.setTaskName(taskName);
                 task.setTaskColor(Integer.parseInt(taskColor));
 
@@ -69,14 +61,10 @@ public class QueryHelper {
             } while (cursor.moveToNext());
 
 
-
-            Toast.makeText(context,"num in db"+cursor.getCount(),Toast.LENGTH_LONG).show();
-
             cursor.close();
 
         }
 
-//        createToastWithText("goals list+" + goalsList);
         db.close();
         return taskList;
     }

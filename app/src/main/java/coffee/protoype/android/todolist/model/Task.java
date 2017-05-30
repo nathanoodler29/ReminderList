@@ -5,20 +5,8 @@ package coffee.protoype.android.todolist.model;
  */
 
 public class Task {
-    private int taskNum;
-    private String taskDescription;
-    private String isTaskDone;
-    private String taskTime;
+
     private int taskColor;
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
     private String taskName;
 
 
@@ -26,23 +14,13 @@ public class Task {
 
     }
 
-    public Task(int taskNum, String taskDescription, String isTaskDone, String taskTime) {
+    public Task(String taskName, int taskColor) {
 
-        this.taskNum = taskNum;
+        this.taskName = taskName;
 
-        this.taskDescription = taskDescription;
-        this.isTaskDone = isTaskDone;
-        this.taskTime = taskTime;
+        this.taskColor = taskColor;
 
 
-    }
-
-    public String getTaskTime() {
-        return taskTime;
-    }
-
-    public void setTaskTime(String taskTime) {
-        this.taskTime = taskTime;
     }
 
     public int getTaskColor() {
@@ -54,32 +32,12 @@ public class Task {
     }
 
 
-    public Task(int tasknum, String taskDescription, String isTaskDone) {
-
+    public String getTaskName() {
+        return taskName;
     }
 
-    public int getTaskNum() {
-        return taskNum;
-    }
-
-    public void setTaskNum(int taskNum) {
-        this.taskNum = taskNum;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
-    public String getIsTaskDone() {
-        return isTaskDone;
-    }
-
-    public void setIsTaskDone(String isTaskDone) {
-        this.isTaskDone = isTaskDone;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
 
