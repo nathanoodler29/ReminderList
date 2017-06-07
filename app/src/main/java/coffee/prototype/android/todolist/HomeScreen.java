@@ -174,4 +174,23 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
+    public void navigateToActiveTasks(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+        finish();
+        Intent activeTasks = new Intent(this, HomeScreen.class);
+        startActivity(activeTasks);
+
+
+    }
+
+    public void navigateToCompletedTasks(View view){
+        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibe.vibrate(100);
+
+        Intent completedTasks = new Intent(this, CompletedTasks.class);
+        startActivity(completedTasks);
+
+
+    }
 }

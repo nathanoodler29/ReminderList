@@ -7,7 +7,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/reminder_logo"/>
+            android:src="@drawable/calander"/>
     </item>
 
 

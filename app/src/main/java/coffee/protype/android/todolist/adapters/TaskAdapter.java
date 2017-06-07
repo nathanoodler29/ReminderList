@@ -29,6 +29,8 @@ import coffee.protoype.android.todolist.model.TaskDataBase;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private ArrayList<Task> tasks = new ArrayList<Task>();
     private Context mContext;
+    private QueryHelper queryHelper = new QueryHelper();
+
 
     public static class ViewHolder extends
             RecyclerView.ViewHolder {
@@ -91,8 +93,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
                 holder.getAdapterPosition();
 
-                deleteTaskToTable(context, tasks.get(holder.getAdapterPosition()).getTaskName());
-                RemoveItem(holder.getAdapterPosition());
+                queryHelper.updateCurrentTaskToComplete(context,tasks.get(holder.getAdapterPosition()).getTaskName());
+//                deleteTaskToTable(context, tasks.get(holder.getAdapterPosition()).getTaskName());
+//                RemoveItem(holder.getAdapterPosition());
+
+                removeItem(holder.getAdapterPosition());
+
 
 
             }
@@ -104,30 +110,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public int getItemCount() {
         return tasks.size();
     }
+//
+//    private void deleteTaskToTable(Context context, String taskName) {
+//        TaskDataBase dbHelper = new TaskDataBase(context);
+//
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//        Cursor cursor = db.rawQuery("SELECT * FROM " + TaskContract.TaskEntry.TABLE_NAME +
+//                " WHERE " + TaskContract.TaskEntry.COLUMN_TASK_Title + " = " + "'" + taskName + "'", null);
+//        ArrayList<Task> taskList = new ArrayList<Task>();
+//        taskList.clear();
+//
+//
+//        if (cursor.moveToFirst()) {
+//
+//
+//            db.execSQL("DELETE FROM " + TaskContract.TaskEntry.TABLE_NAME + " WHERE " + TaskContract.TaskEntry.COLUMN_TASK_Title + " = " + "'" + taskName + "'");
+//
+//
+//            cursor.close();
+//
+//        }
+//        db.close();
+//    }
 
-    private void deleteTaskToTable(Context context, String taskName) {
-        TaskDataBase dbHelper = new TaskDataBase(context);
-
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TaskContract.TaskEntry.TABLE_NAME +
-                " WHERE " + TaskContract.TaskEntry.COLUMN_TASK_Title + " = " + "'" + taskName + "'", null);
-        ArrayList<Task> taskList = new ArrayList<Task>();
-        taskList.clear();
-
-
-        if (cursor.moveToFirst()) {
-
-
-            db.execSQL("DELETE FROM " + TaskContract.TaskEntry.TABLE_NAME + " WHERE " + TaskContract.TaskEntry.COLUMN_TASK_Title + " = " + "'" + taskName + "'");
-
-
-            cursor.close();
-
-        }
-        db.close();
-    }
-
-    private void RemoveItem(int position) {
+    private void removeItem(int position) {
         tasks.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, tasks.size());

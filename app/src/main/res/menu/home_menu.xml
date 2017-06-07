@@ -6,16 +6,17 @@
         android:id="@+id/add_item"
         android:enabled="true"
         android:icon="@drawable/plus_icon_try"
-        android:title=""
+        android:title="Add Reminder"
         app:showAsAction="ifRoom"
        />
     <item
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/home"
-        android:title=""
+        android:title="Home"
         app:showAsAction="ifRoom"
         />
+
 
 
 </menu>

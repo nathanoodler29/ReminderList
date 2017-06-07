@@ -23,12 +23,10 @@ import coffee.protoype.android.todolist.model.Time;
 
 public class AddTask extends AppCompatActivity {
     private EditText taskTitle;
-    private EditText taskDescription;
     private Task task = new Task();
     private QueryHelper helper = new QueryHelper();
     private EditText time;
     private Time userTime = new Time();
-    private int mHour, mMinute;
 
 
     @Override
@@ -91,7 +89,6 @@ public class AddTask extends AppCompatActivity {
                     task.setTaskName("not valid");
                 } else if (userInput.matches("^([a-zA-Z]+ ?){4,15}")) {
                     task.setTaskName(userInput);
-                    Toast.makeText(getApplicationContext(), "Valid Task Title", Toast.LENGTH_SHORT).show();
 
                 } else if (!userInput.matches("^([a-zA-Z] ?){4,15}")) {
 
@@ -110,8 +107,8 @@ public class AddTask extends AppCompatActivity {
     public void openClockPrompt(View view) {
         // Get Current Time
         final Calendar c = Calendar.getInstance();
-        mHour = c.get(Calendar.HOUR_OF_DAY);
-        mMinute = c.get(Calendar.MINUTE);
+        int mHour = c.get(Calendar.HOUR_OF_DAY);
+        int mMinute = c.get(Calendar.MINUTE);
 
         // Launch Time Picker Dialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
