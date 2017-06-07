@@ -23,13 +23,10 @@ import coffee.protype.android.todolist.adapters.TaskAdapter;
 
 public class HomeScreen extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
-    private TaskAdapter mAdapter;
-    private ImageView noReminderSetImage;
-    private TextView noReminderSetText;
-
 
     private QueryHelper helper = new QueryHelper();
 
+    //@Todo create a white spliier below toolbar, to state inprorss and comeplt
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,34 +35,54 @@ public class HomeScreen extends AppCompatActivity {
 
         Toolbar homeToolbar = (Toolbar) findViewById(R.id.home_toolbar);
         setSupportActionBar(homeToolbar);
-        createBottomNavigation();
 
-        noReminderSetImage = (ImageView)findViewById(R.id.no_reminders_set);
-        noReminderSetText = (TextView) findViewById(R.id.no_reminders_set_text);
-        floatingActionButton = (FloatingActionButton)findViewById(R.id.add_reminder_floating_button);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.add_item:
+                        Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibe.vibrate(100);
+                        Intent addTask = new Intent(HomeScreen.this, AddTask.class);
+                        startActivity(addTask);
+                        break;
+                    case R.id.home:
+                        Vibrator viber = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        viber.vibrate(100);
+                        break;
 
+                }
+                return true;
+
+            }
+        });
+
+        ImageView noReminderSetImage = (ImageView) findViewById(R.id.no_reminders_set);
+        TextView noReminderSetText = (TextView) findViewById(R.id.no_reminders_set_text);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.add_reminder_floating_button);
         //Creates a recycler view for goals
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycleview);
+
         //creates a linear layout
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         //sets a linear layout
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new TaskAdapter(this, helper.populateTaskAdapter(getApplicationContext()));
+        TaskAdapter mAdapter = new TaskAdapter(this, helper.populateTaskAdapter(getApplicationContext()));
         recyclerView.setAdapter(mAdapter);
 
 
-
-        if (mAdapter.getItemCount()>0){
+        if (mAdapter.getItemCount() > 0) {
             noReminderSetImage.setVisibility(View.INVISIBLE);
             noReminderSetText.setVisibility(View.INVISIBLE);
 
 
         }
 
-            //Insert the red wine values in the database.
-            helper.populateTaskAdapter(getApplicationContext());
+        //Insert the red wine values in the database.
+        helper.populateTaskAdapter(getApplicationContext());
 
-            mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -76,12 +93,12 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy>0){
+                if (dy > 0) {
                     hideNavBar();
                     hideFloatingButton();
 
 
-                }else{
+                } else {
                     displayNavBar();
                     displayFloatingButton();
                 }
@@ -100,7 +117,7 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() ==  R.id.add_item) {
+        if (item.getItemId() == R.id.add_item) {
             Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             vibe.vibrate(100);
             finish();
@@ -123,34 +140,8 @@ public class HomeScreen extends AppCompatActivity {
         startActivity(addTask);
     }
 
-    public void createBottomNavigation(){
-        final BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.button_add_item) {
-                    finish();
-                    Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibe.vibrate(100);
 
-                    finish();
-                    Intent addTask = new Intent(getApplicationContext(), AddTask.class);
-                    startActivity(addTask);
-
-                } else if (item.getItemId() == R.id.bottom_home) {
-                    finish();
-                    Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                    vibe.vibrate(100);
-
-
-                }
-                return true;
-            }
-        });
-    }
-
-    public void hideNavBar(){
+    public void hideNavBar() {
         final BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
 
@@ -159,8 +150,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-
-    public void displayNavBar(){
+    public void displayNavBar() {
         final BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
 
@@ -168,19 +158,20 @@ public class HomeScreen extends AppCompatActivity {
 
     }
 
-    public void hideFloatingButton(){
-        floatingActionButton = (FloatingActionButton)findViewById(R.id.add_reminder_floating_button);
+    public void hideFloatingButton() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.add_reminder_floating_button);
 
 
         floatingActionButton.setVisibility(View.INVISIBLE);
 
     }
 
-    public void displayFloatingButton(){
-        floatingActionButton = (FloatingActionButton)findViewById(R.id.add_reminder_floating_button);
+    public void displayFloatingButton() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.add_reminder_floating_button);
 
         floatingActionButton.setVisibility(View.VISIBLE);
 
     }
+
 
 }
